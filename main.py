@@ -6,6 +6,7 @@ from PyQt5.QtMultimedia import QMediaPlayer, QMediaContent, QMediaPlaylist
 from collections import defaultdict
 import os
 import time
+from abs_path import abs_path
 
 list_items = []
 user_playlists = defaultdict(list)
@@ -53,7 +54,7 @@ lb_info.setStyleSheet('color: #ccc')
 lb_info.setFont(font_info)
 lb_music = QLabel()
 lb_volume = QLabel()
-pixmap = QPixmap('icons_for_project/med.png')
+pixmap = QPixmap(abs_path('icons_for_project/med.png'))
 pixmap = pixmap.scaled(35, 35)
 lb_volume.setPixmap(pixmap)
 lb_music_time = QLabel('00:00')
@@ -92,31 +93,31 @@ volume_slider.setValue(75)
 volume_slider.setSingleStep(1)
 btn_previous = QPushButton()
 btn_previous.setStyleSheet(style)
-btn_previous.setIcon(QIcon('icons_for_project/left.png'))
+btn_previous.setIcon(QIcon(abs_path('icons_for_project/left.png')))
 btn_previous.setIconSize(QSize(45, 45))
 btn_previous.setFixedSize(75, 45)
 btn_pause = QPushButton()
 btn_pause.setStyleSheet('border-radius: 23px')
-btn_pause.setIcon(QIcon('icons_for_project/pause.png'))
+btn_pause.setIcon(QIcon(abs_path('icons_for_project/pause.png')))
 btn_pause.setIconSize(QSize(45, 45))
 btn_pause.setFixedSize(45, 45)
 btn_unpause = QPushButton()
 btn_unpause.setStyleSheet('border-radius: 23px')
-btn_unpause.setIcon(QIcon('icons_for_project/play-button.png'))
+btn_unpause.setIcon(QIcon(abs_path('icons_for_project/play-button.png')))
 btn_unpause.setIconSize(QSize(45, 45))
 btn_unpause.setFixedSize(45, 45)
 btn_next = QPushButton()
 btn_next.setStyleSheet(style)
-btn_next.setIcon(QIcon('icons_for_project/right.png'))
+btn_next.setIcon(QIcon(abs_path('icons_for_project/right.png')))
 btn_next.setIconSize(QSize(45, 45))
 btn_next.setFixedSize(75, 45)
 btn_uncycle = QPushButton()
 btn_uncycle.setStyleSheet(style)
-btn_uncycle.setIcon(QIcon('icons_for_project/cycle.png'))
+btn_uncycle.setIcon(QIcon(abs_path('icons_for_project/cycle.png')))
 btn_uncycle.setIconSize(QSize(25, 25))
 btn_cycle = QPushButton()
 btn_cycle.setStyleSheet(style)
-btn_cycle.setIcon(QIcon('icons_for_project/cycle1.png'))
+btn_cycle.setIcon(QIcon(abs_path('icons_for_project/cycle1.png')))
 btn_cycle.setIconSize(QSize(25, 25))
 btn_back = QPushButton('Назад')
 btn_next_step = QPushButton('Дальше')
@@ -269,7 +270,7 @@ def addItemToPlaylist():
     item = items.selectedItems()[0]
     if item.text() not in user_playlists[user_text]:
         user_playlists[user_text].append(item.text())
-        icon = QIcon('icons_for_project/check.png')
+        icon = QIcon(abs_path('icons_for_project/check.png'))
         item.setIcon(icon)
         items.setIconSize(QSize(20, 20))
 
@@ -305,7 +306,7 @@ class AudioProcessor:
         else:
             lb_info.setText(f'                        name: {self.filename}')
         media.setMedia(QMediaContent(QUrl.fromLocalFile(self.path)))
-        pixmap = QPixmap('icons_for_project/headphones.png')
+        pixmap = QPixmap(abs_path('icons_for_project/headphones.png'))
         pixmap = pixmap.scaled(125, 125, Qt.KeepAspectRatio)
         lb_music.setPixmap(pixmap)
 
@@ -416,19 +417,19 @@ def volumeMoved(vol):
 
 def changeValue(value):
     if value == 0:
-        pixmap = QPixmap('icons_for_project/mute.png')
+        pixmap = QPixmap(abs_path('icons_for_project/mute.png'))
         pixmap = pixmap.scaled(35, 35)
         lb_volume.setPixmap(pixmap)
     elif 0 < value <= 30:
-        pixmap = QPixmap('icons_for_project/min.png')
+        pixmap = QPixmap(abs_path('icons_for_project/min.png'))
         pixmap = pixmap.scaled(35, 35)
         lb_volume.setPixmap(pixmap)
     elif 30 < value < 70:
-        pixmap = QPixmap('icons_for_project/med.png')
+        pixmap = QPixmap(abs_path('icons_for_project/med.png'))
         pixmap = pixmap.scaled(35, 35)
         lb_volume.setPixmap(pixmap)
     else:
-        pixmap = QPixmap('icons_for_project/max.png')
+        pixmap = QPixmap(abs_path('icons_for_project/max.png'))
         pixmap = pixmap.scaled(35, 35)
         lb_volume.setPixmap(pixmap)
 
@@ -485,7 +486,7 @@ def showPlaylist():
     btn_pause.show()
     btn_cycle.hide()
     btn_uncycle.show()
-    pixmap = QPixmap('icons_for_project/headphones.png')
+    pixmap = QPixmap(abs_path('icons_for_project/headphones.png'))
     pixmap = pixmap.scaled(125, 125, Qt.KeepAspectRatio)
     lb_music.setPixmap(pixmap)
     playlist = QMediaPlaylist(media)
